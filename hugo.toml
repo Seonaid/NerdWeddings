@@ -1,0 +1,37 @@
+# Nerd Weddings — Hugo configuration
+# Docs: https://gohugo.io/configuration/
+
+baseURL = "https://nerdweddings.ca/"
+title = "Nerd Weddings"
+locale = "en-CA"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[params]
+  # Shown in <title> and social cards
+  seoTitle = "Nerd Weddings | Secular Humanist Wedding Officiant in Ontario"
+  description = "Licensed Ontario wedding officiant for nerds and geeks. Secular humanist, fandom-friendly ceremonies: D&D, sci-fi, anime, gaming, comics and more."
+
+  # Optional. If set, it appears in the About section and the footer.
+  officiantName = ""
+
+  # PLACEHOLDER address: replace with the real one before launch.
+  email = "hello@nerdweddings.ca"
+  # Leave empty to hide the phone number everywhere.
+  phone = ""
+
+  region = "Serving all of Ontario"
+  responseTime = "I typically respond within 24 hours. Can't wait to hear about your plans!"

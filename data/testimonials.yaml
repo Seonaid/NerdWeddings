@@ -1,0 +1,22 @@
+# These three quotes came from the Lovable mockup and are PLACEHOLDERS, not real
+# reviews. While `placeholder: true`, they only show when you run `hugo server`
+# (with a "Placeholder" tag) and are left OUT of the published site.
+#
+# To publish real testimonials: replace the text and names with real ones (with
+# the couple's permission), then delete the `placeholder: true` line.
+# If no non-placeholder testimonials exist, the whole section disappears.
+
+- quote: "Our ceremony was absolutely perfect! The references to our favourite fantasy series felt natural and meaningful, not cheesy at all. Our guests loved it!"
+  names: "Sarah & Mike"
+  theme: "Lord of the Rings Themed"
+  placeholder: true
+
+- quote: "We were worried about finding an officiant who understood our interests. Not only did they get it, they made our ceremony feel like the epic finale of our favourite anime!"
+  names: "Jessica & Chris"
+  theme: "Gaming & Anime Fusion"
+  placeholder: true
+
+- quote: "Rolling for initiative to start our marriage? Yes please! The ceremony was the perfect blend of heartfelt and fun. Our friends are still talking about it!"
+  names: "Alex & Jordan"
+  theme: "D&D Adventure"
+  placeholder: true

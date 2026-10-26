@@ -1,0 +1,7 @@
+<article class="article-card">
+  <span class="article-card__icon">{{ partial "icon.html" "scroll" }}</span>
+  <p class="mono article-card__meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time> · {{ .ReadingTime }} min read</p>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 150 }}{{ end }}</p>
+  <a class="article-card__more" href="{{ .RelPermalink }}">Read the field note<span class="sr-only">: {{ .Title }}</span> &rarr;</a>
+</article>

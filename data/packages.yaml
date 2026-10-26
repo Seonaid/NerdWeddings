@@ -1,0 +1,36 @@
+# Packages and prices are taken from the Lovable mockup and are PLACEHOLDERS
+# until you confirm them. Edit here; no template changes needed.
+
+- name: "Starter Quest"
+  price: "$450"
+  featured: false
+  features:
+    - "Initial consultation meeting"
+    - "Custom ceremony script"
+    - "Unlimited email support"
+    - "Ceremony rehearsal coordination"
+    - "Marriage licence signing"
+
+- name: "Epic Adventure"
+  price: "$650"
+  featured: true
+  badge: "Most Popular"
+  lead: "Everything in Starter Quest, plus:"
+  features:
+    - "In-person ceremony rehearsal"
+    - "Custom vow writing assistance"
+    - "Themed ceremony elements"
+    - "Unity ceremony coordination"
+    - "Premium printed ceremony keepsake"
+
+- name: "Legendary Campaign"
+  price: "$850"
+  featured: false
+  lead: "Everything in Epic Adventure, plus:"
+  features:
+    - "Multiple consultation meetings"
+    - "Full themed ceremony design"
+    - "Guest participation coordination"
+    - "Custom music cues"
+    - "Post-wedding ceremony recording"
+    - "Deluxe ceremony keepsake book"

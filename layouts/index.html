@@ -1,0 +1,269 @@
+{{ define "main" }}
+{{- $h := hugo.Data.home -}}
+{{- $articles := where site.RegularPages "Section" "articles" -}}
+{{- $stories := hugo.Data.testimonials -}}
+{{- if not hugo.IsServer }}{{ $stories = where $stories "placeholder" "!=" true }}{{ end -}}
+{{- /* Sections alternate parchment/night automatically, so optional sections can come and go. */ -}}
+{{- $i := 0 -}}
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  {{- if fileExists "static/images/hero.jpg" }}
+  <div class="hero__photo" style="background-image:url('{{ "images/hero.jpg" | relURL }}')" aria-hidden="true"></div>
+  {{- end }}
+  <div class="hero__stars" aria-hidden="true"></div>
+  <div class="hero__stars hero__stars--far" aria-hidden="true"></div>
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="chip">{{ partial "icon.html" "heart" }}<span>{{ $h.hero.eyebrow }}</span></p>
+      <h1 class="hero__title">{{ $h.hero.title_before }} <span class="hero__accent">{{ $h.hero.title_accent }}</span></h1>
+      <p class="hero__text">{{ $h.hero.text }}</p>
+      <p class="hero__cta">
+        <a class="btn btn--lg" href="{{ $h.hero.primary.href }}">{{ $h.hero.primary.label }}</a>
+        <a class="btn btn--lg btn--outline" href="{{ $h.hero.secondary.href }}">{{ $h.hero.secondary.label }}</a>
+      </p>
+    </div>
+
+    <div class="hero__art">
+      <button class="d20" type="button" data-d20 aria-label="Roll a twenty-sided die">
+        <svg viewBox="0 0 200 200" role="img" aria-hidden="true" focusable="false">
+          <g stroke="#14112e" stroke-width="3" stroke-linejoin="round">
+            <polygon class="f3" points="20,54 100,50 48,138"/>
+            <polygon class="f4" points="20,54 48,138 20,146"/>
+            <polygon class="f1" points="20,54 100,8 100,50"/>
+            <polygon class="f2" points="100,8 180,54 100,50"/>
+            <polygon class="f3" points="180,54 100,50 152,138"/>
+            <polygon class="f4" points="180,54 152,138 180,146"/>
+            <polygon class="f2" points="20,146 48,138 100,192"/>
+            <polygon class="f1" points="48,138 152,138 100,192"/>
+            <polygon class="f2" points="180,146 152,138 100,192"/>
+            <polygon class="fc" points="100,50 48,138 152,138"/>
+          </g>
+          <text class="d20__num" x="100" y="121" text-anchor="middle" data-d20-num>20</text>
+        </svg>
+      </button>
+
+      <div class="sheet" role="group" aria-label="{{ $h.sheet.title }}">
+        <div class="sheet__head">
+          <span class="mono">{{ $h.sheet.title }}</span>
+        </div>
+        <div class="sheet__id">
+          <p class="sheet__name">{{ with site.Params.officiantName }}{{ . }}{{ else }}Your Officiant{{ end }}</p>
+          <span class="sheet__badge mono">{{ $h.sheet.badge }}</span>
+        </div>
+        <dl class="sheet__rows">
+          {{- range $h.sheet.rows }}
+          <div><dt class="mono">{{ .k }}</dt><dd>{{ .v }}</dd></div>
+          {{- end }}
+        </dl>
+        <ul class="sheet__stats" aria-label="Stats">
+          {{- range $h.sheet.stats }}
+          <li>
+            <span class="mono">{{ .k }}</span>
+            <span class="bar" style="{{ printf "--pct:%d%%" (mul .v 5) | safeCSS }}"></span>
+            <b class="mono">{{ .v }}</b>
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+      <p class="d20__caption mono" data-d20-caption aria-live="polite">Psst. The die is clickable. Roll for initiative.</p>
+    </div>
+  </div>
+  <svg class="hero__edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 46c60-18 110-22 170-8s96 30 168 20 118-40 190-38 128 30 196 34 112-24 186-28 130 18 200 22 118-26 186-20 120 30 144 18V80H0z"/></svg>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+{{- $i = add $i 1 }}
+<section class="section {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="about">
+  <div class="container">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.about.eyebrow }}</p>
+      <h2>{{ $h.about.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      {{- range $h.about.paragraphs }}
+      <p class="section__lead">{{ . }}</p>
+      {{- end }}
+    </header>
+    <div class="cards">
+      {{- range $h.about.cards }}
+      <article class="card">
+        <span class="card__icon">{{ partial "icon.html" .icon }}</span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text }}</p>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PACKAGES ============================ -->
+{{- $i = add $i 1 }}
+<section class="section {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="packages">
+  <div class="container">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.packages.eyebrow }}</p>
+      <h2>{{ $h.packages.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      <p class="section__lead">{{ $h.packages.text }}</p>
+    </header>
+    <div class="quests">
+      {{- range hugo.Data.packages }}
+      <article class="quest{{ if .featured }} quest--featured{{ end }}">
+        {{- with .badge }}<span class="quest__badge">{{ partial "icon.html" "sparkle" }}{{ . }}</span>{{ end }}
+        <h3 class="quest__name">{{ .name }}</h3>
+        <p class="quest__price">{{ .price }}</p>
+        {{- with .lead }}<p class="quest__lead">{{ . }}</p>{{ end }}
+        <ul class="quest__list">
+          {{- range .features }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        <a class="btn{{ if not .featured }} btn--ghost{{ end }}" href="#contact" data-package="{{ .name }}">Get Started</a>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STORIES ============================ -->
+{{- if $stories }}
+{{- $i = add $i 1 }}
+<section class="section section--dots {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="stories">
+  <div class="container">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.stories.eyebrow }}</p>
+      <h2>{{ $h.stories.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      <p class="section__lead">{{ $h.stories.text }}</p>
+    </header>
+    <div class="bubbles">
+      {{- range $stories }}
+      <figure class="bubble">
+        {{- if and hugo.IsServer .placeholder }}<span class="dev-chip">Placeholder: hidden on the live site</span>{{ end }}
+        <blockquote><p>&ldquo;{{ .quote }}&rdquo;</p></blockquote>
+        <figcaption>
+          <span class="avatar" aria-hidden="true">{{ substr .names 0 1 }}</span>
+          <span><strong>{{ .names }}</strong><span class="mono">{{ .theme }}</span></span>
+        </figcaption>
+      </figure>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}
+
+<!-- ============================ ARTICLES TEASER ============================ -->
+{{- if $articles }}
+{{- $i = add $i 1 }}
+<section class="section {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="library">
+  <div class="container">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.articles.eyebrow }}</p>
+      <h2>{{ $h.articles.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      <p class="section__lead">{{ $h.articles.text }}</p>
+    </header>
+    <div class="articles">
+      {{- range first 3 $articles.ByDate.Reverse }}
+      {{ partial "article-card.html" . }}
+      {{- end }}
+    </div>
+    <p class="center"><a class="btn btn--outline" href="{{ "/articles/" | relURL }}">All field notes</a></p>
+  </div>
+</section>
+{{- end }}
+
+<!-- ============================ FAQ ============================ -->
+{{- $i = add $i 1 }}
+<section class="section {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="faq">
+  <div class="container container--narrow">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.faq.eyebrow }}</p>
+      <h2>{{ $h.faq.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      <p class="section__lead">{{ $h.faq.text }}</p>
+    </header>
+    <div class="faq">
+      {{- range hugo.Data.faq }}
+      <details class="faq__item">
+        <summary><span class="faq__prompt mono" aria-hidden="true">&gt;</span><span class="faq__q">{{ .q }}</span><span class="faq__mark mono" aria-hidden="true"></span></summary>
+        <p>{{ .a }}</p>
+      </details>
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+{{- $i = add $i 1 }}
+<section class="section {{ if eq (mod $i 2) 1 }}section--parch{{ else }}section--night{{ end }}" id="contact">
+  <div class="container">
+    <header class="section__head">
+      <p class="eyebrow mono">{{ $h.contact.eyebrow }}</p>
+      <h2>{{ $h.contact.title }}</h2>
+      <p class="orn" aria-hidden="true"><i></i></p>
+      <p class="section__lead">{{ $h.contact.text }}</p>
+    </header>
+
+    <div class="contact">
+      <form class="form" id="contact-form" action="mailto:{{ site.Params.email }}" method="post" enctype="text/plain" data-email="{{ site.Params.email }}">
+        <div class="field">
+          <label for="f-names">Your names <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-names" name="Names" type="text" required autocomplete="name" placeholder="e.g. Sam &amp; Riley">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-date">Wedding date</label>
+            <input id="f-date" name="Wedding date" type="date">
+          </div>
+          <div class="field">
+            <label for="f-where">City or venue</label>
+            <input id="f-where" name="Location" type="text" placeholder="Anywhere in Ontario">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-package">Package you're eyeing</label>
+          <select id="f-package" name="Package">
+            <option value="">Not sure yet</option>
+            {{- range hugo.Data.packages }}<option>{{ .name }}</option>{{ end }}
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-vision">Tell me about your vision <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="f-vision" name="Vision" rows="5" required placeholder="Your fandoms, the vibe you're after, guest count, anything you're excited (or nervous) about."></textarea>
+        </div>
+        <div class="form__actions">
+          <button class="btn" type="submit">Compose my message</button>
+          <button class="btn btn--ghost js-only" type="button" data-copy>Copy message instead</button>
+        </div>
+        <p class="form__note" data-status role="status">
+          This opens a pre-filled email in your email app. Nothing is sent until you press send.
+          Prefer to write it yourself? Email <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>.
+        </p>
+      </form>
+
+      <aside class="info" aria-label="Get in touch">
+        <h3>Get in touch</h3>
+        <ul>
+          <li>
+            <span class="info__icon">{{ partial "icon.html" "mail" }}</span>
+            <span><strong>Email</strong><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></span>
+          </li>
+          {{- with site.Params.phone }}
+          <li>
+            <span class="info__icon">{{ partial "icon.html" "phone" }}</span>
+            <span><strong>Phone</strong><a href="tel:{{ . | replaceRE "[^0-9+]" "" }}">{{ . }}</a></span>
+          </li>
+          {{- end }}
+          <li>
+            <span class="info__icon">{{ partial "icon.html" "pin" }}</span>
+            <span><strong>Location</strong>{{ site.Params.region }}</span>
+          </li>
+          <li>
+            <span class="info__icon">{{ partial "icon.html" "clock" }}</span>
+            <span><strong>Response time</strong>{{ site.Params.responseTime }}</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,70 @@
+# Editable copy for the one-page home layout.
+# Everything here is DRAFT copy adapted from the Lovable mockup; edit freely.
+
+hero:
+  eyebrow: "Licensed in Ontario · Secular humanist"
+  title_before: "Level Up Your"
+  title_accent: "Wedding Day"
+  text: "Bringing your love story to life with ceremonies as unique as your favourite fandoms. Custom, heartfelt, and perfectly nerdy."
+  primary: { label: "Book Your Ceremony", href: "#contact" }
+  secondary: { label: "Learn More", href: "#about" }
+
+# The "character sheet" card in the hero. Purely for fun: change or delete rows.
+sheet:
+  title: "Character Sheet"
+  badge: "Officiant"
+  rows:
+    - { k: "Class", v: "Secular Humanist Officiant" }
+    - { k: "Licence", v: "Ontario, legally binding" }
+    - { k: "Alignment", v: "Chaotic Good" }
+    - { k: "Special move", v: "Vows with fandom lore" }
+  stats:
+    - { k: "Empathy", v: 19 }
+    - { k: "Fandom lore", v: 18 }
+    - { k: "Improv", v: 17 }
+    - { k: "Punctuality", v: 20 }
+
+about:
+  eyebrow: "01 // About"
+  title: "Your Wedding, Your Way"
+  paragraphs:
+    - "I'm a licensed wedding officiant who believes your ceremony should be as unique as your relationship. Whether you want to include your favourite game, book, or fandom, I'll help create a ceremony that truly represents you."
+    - "My ceremonies are secular and humanist: no religious content unless you ask for it, and no script you didn't have a hand in. Just the two of you, the people you love, and the story you want to tell."
+  cards:
+    - icon: "quill"
+      title: "Personalized Ceremonies"
+      text: "Every ceremony is crafted from scratch to reflect your unique love story and shared interests."
+    - icon: "gamepad"
+      title: "Nerd-Friendly"
+      text: "From D&D to Star Wars, anime to Marvel, I speak your language and celebrate your passions."
+    - icon: "compass"
+      title: "Secular & Inclusive"
+      text: "No religious content unless you want it. Every couple and every kind of love story is welcome."
+    - icon: "shield"
+      title: "Professional & Fun"
+      text: "Licensed and experienced, with a warm approach that puts couples and guests at ease."
+
+packages:
+  eyebrow: "02 // Quest board"
+  title: "Choose Your Adventure"
+  text: "Select the package that best fits your wedding vision. Every package includes a legally binding ceremony. Travel fees may apply outside the Greater Toronto Area."
+
+stories:
+  eyebrow: "03 // Party reviews"
+  title: "Love Stories We've Told"
+  text: "Don't just take our word for it. Hear from couples who levelled up their wedding day."
+
+articles:
+  eyebrow: "The guild library"
+  title: "Field Notes for Nerdy Ceremonies"
+  text: "Ideas for weaving your fandoms into the ceremony itself."
+
+faq:
+  eyebrow: "04 // Help file"
+  title: "Frequently Asked Questions"
+  text: "Everything you need to know about your nerdy wedding ceremony."
+
+contact:
+  eyebrow: "05 // Send a raven"
+  title: "Ready to Start Your Quest?"
+  text: "Let's chat about making your wedding ceremony unforgettable!"

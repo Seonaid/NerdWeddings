@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow mono">{{ hugo.Data.home.articles.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="section__lead">{{ with .Description }}{{ . }}{{ else }}{{ hugo.Data.home.articles.text }}{{ end }}</p>
+  </div>
+</section>
+<section class="section section--parch">
+  <div class="container">
+    <h2 class="sr-only">All field notes</h2>
+    <div class="articles">
+      {{- range .Pages.ByDate.Reverse }}
+      {{ partial "article-card.html" . }}
+      {{- else }}
+      <p>No field notes yet. Check back soon.</p>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,24 @@
+{{- $hasArticles := gt (len (where site.RegularPages "Section" "articles")) 0 -}}
+{{- $showStories := or hugo.IsServer (gt (len (where hugo.Data.testimonials "placeholder" "!=" true)) 0) -}}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }}, home">
+      <span class="brand__mark">{{ partial "icon.html" "d20" }}</span>
+      <span class="brand__text">Nerd<b>Weddings</b><span class="brand__tld">.ca</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span><span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="{{ "/#about" | relURL }}">About</a></li>
+        <li><a href="{{ "/#packages" | relURL }}">Packages</a></li>
+        {{- if $showStories }}<li><a href="{{ "/#stories" | relURL }}">Stories</a></li>{{ end }}
+        {{- if $hasArticles }}<li><a href="{{ "/articles/" | relURL }}">Field notes</a></li>{{ end }}
+        <li><a href="{{ "/#faq" | relURL }}">FAQ</a></li>
+        <li><a class="btn btn--sm" href="{{ "/#contact" | relURL }}">Book a chat</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

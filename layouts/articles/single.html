@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="page-hero page-hero--article">
+  <div class="container container--prose">
+    <p class="eyebrow mono"><a href="{{ "/articles/" | relURL }}">&larr; Field notes</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="mono page-hero__meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time> · {{ .ReadingTime }} min read</p>
+  </div>
+</section>
+<article class="section section--parch">
+  <div class="container container--prose">
+    <div class="prose">
+      {{ .Content }}
+    </div>
+    <aside class="prose-cta">
+      <h2>Want this in your ceremony?</h2>
+      <p>Tell me what you love and we'll build something that sounds like the two of you.</p>
+      <a class="btn" href="{{ "/#contact" | relURL }}">Start a conversation</a>
+    </aside>
+  </div>
+</article>
+{{ end }}
