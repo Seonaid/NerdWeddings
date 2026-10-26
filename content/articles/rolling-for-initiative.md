@@ -5,6 +5,8 @@ description: "You don't have to pick between a heartfelt ceremony and a nerdy on
 draft: false
 ---
 
+DRAFT!!! 
+
 *This is a sample field note (draft) to show how articles look. Rewrite it in your own voice, or delete it.*
 
 The best nerdy ceremonies don't feel like a costume party. They feel like *the two of you*, with your shared language showing up at the moments that matter. Here are five ways couples can bring tabletop culture into a ceremony without losing the heart of it.
@@ -32,3 +34,5 @@ A ceremony is more moving when the audience takes part. Ask your guests to answe
 ---
 
 Start with what you actually love, then decide how loud to make it. The goal is a ceremony that sounds like you, and a nerdy detail or two is often all it takes.
+
+Changes to force the github pages deployment
